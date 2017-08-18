@@ -17,3 +17,9 @@ class HomeView(generic.TemplateView):
             ctx['data'][category] = category.articles.all()
 
         return ctx
+
+
+class ArticleCreateView(generic.CreateView):
+    template_name = "document/write.html"
+    model = models.Article
+    fields = ("title", "content", "category",)
