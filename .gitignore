@@ -1,0 +1,4 @@
+/.idea
+/doc_center/__pycache__
+/document/__pycache__
+/document/migrations/__pycache__
