@@ -1,0 +1,17 @@
+{% extends 'document/home.html' %}
+{% load static %}
+
+{% block content %}
+    <form class="form-row" role="form" action="{% url 'category_create' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-6">
+                <input type="text" class="form-control" placeholder="分类名称" id="id_name" name="name" required>
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary" id="save">添加分类</button>
+            </div>
+        </div>
+    </form>
+    {{ form.errors }}
+{% endblock %}

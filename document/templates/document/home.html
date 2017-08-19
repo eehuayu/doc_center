@@ -2,74 +2,32 @@
 
 {% block left_side %}
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-        <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingOne">
-                <h4 class="panel-title">
-                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
-                       aria-expanded="true" aria-controls="collapseOne">
-                        Collapsible Group Item #1
-                    </a>
-                </h4>
-            </div>
-            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                <div class="panel-body">
-                    <div>
-                        <a href=""># CollapsOne 1</a>
-                    </div>
-                    <div>
-                        <a href=""># CollapsOne 1</a>
-                    </div>
-                    <div>
-                        <a href=""># CollapsOne 1</a>
+        {% for category in category_list %}
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab">
+                    <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{ category.id }}"
+                           aria-expanded="false" aria-controls="collapseOne">
+                            {{ category.name }}
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapse{{ category.id }}" class="panel-collapse collapse {% if category.id == object.category.id %}in{% endif %}" role="tabpanel">
+                    <div class="panel-body">
+                        {% for article in category.articles.all %}
+                            <div>
+                                <a href="{% url 'article_detail' article.id %}">{{ article.title }}</a>
+                            </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingTwo">
-                <h4 class="panel-title">
-                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
-                       href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        Collapsible Group Item #2
-                    </a>
-                </h4>
-            </div>
-            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                <div class="panel-body">
-                    <div>
-                        <a href=""># CollapsOne 1</a>
-                    </div>
-                    <div>
-                        <a href=""># CollapsOne 1</a>
-                    </div>
-                    <div>
-                        <a href=""># CollapsOne 1</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingThree">
-                <h4 class="panel-title">
-                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
-                       href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        Collapsible Group Item #3
-                    </a>
-                </h4>
-            </div>
-            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                <div class="panel-body">
-                    <div>
-                        <a href=""># CollapsOne 1</a>
-                    </div>
-                    <div>
-                        <a href=""># CollapsOne 1</a>
-                    </div>
-                    <div>
-                        <a href=""># CollapsOne 1</a>
-                    </div>
-                </div>
-            </div>
+        {% endfor %}
+
+        <hr>
+
+        <div class="form-group">
+            <a class="btn btn-info form-control" href="{% url 'category_create' %}">添加分类</a>
         </div>
     </div>
 {% endblock %}

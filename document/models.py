@@ -23,8 +23,7 @@ class Category(Base):
 
 
 class Article(Base):
-    user = models.ForeignKey(User, verbose_name="用户", related_name="user")
-    title = models.CharField(verbose_name="标题", max_length=255)
+    title = models.CharField(verbose_name="标题", max_length=255, unique=True)
     content = models.TextField(verbose_name="内容")
     # 删除category之前要先删除article,(默认情况下删除category会级联删除article)
     category = models.ForeignKey(Category, verbose_name="类别", on_delete=models.PROTECT, related_name="articles")

@@ -1,0 +1,18 @@
+{% extends 'document/home.html' %}
+{% load static %}
+
+{% block content %}
+    <div align="center">
+        <h3>{{ article.title }}</h3>
+    </div>
+
+    <hr>
+    <div>
+        {{ article.content|safe }}
+    </div>
+    <hr>
+    <div align="center">
+        <a class="btn btn-info" href="{% url "article_update" article.id %}">修改文档</a>
+    </div>
+
+{% endblock %}
