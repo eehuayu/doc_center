@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.urls import reverse_lazy, reverse
 
 from document import models, mixins
@@ -47,3 +48,25 @@ class CategoryCreateView(mixins.CreateViewWithCategory):
     success_url = reverse_lazy('home')
 
 
+class UploadCreateView(mixins.CreateViewWithCategory):
+    template_name = "document/upload.html"
+    fields = ("title", "my_file", )
+    model = models.UploadFile
+    success_url = reverse_lazy('upload_list')
+
+
+class UploadListView(mixins.ListViewWithCategory):
+    template_name = "document/upload_list.html"
+    model = models.UploadFile
+
+
+class FileDeleteView(mixins.DeleteViewWithCategory):
+    def post(self, request, *args, **kwargs):
+        pk = int(request.POST.get("id"))
+        upload_file = models.UploadFile.objects.filter(pk=pk)
+        if not upload_file:
+            return HttpResponse("不存在该数据")
+
+        upload_file.delete()
+
+        return HttpResponse("成功删除")

@@ -1,0 +1,54 @@
+{% extends 'document/home.html' %}
+{% load static %}
+
+{% block scripts %}
+    <script>
+        function delete_file(id) {
+            $.ajax({
+                type: "post",
+                url: "{% url 'delete_file' %}",
+                data: {
+                    id: id,
+                    csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val()
+                },
+                success: function (response) {
+                    $.alert(response);
+                    setTimeout(function () {
+                        window.location.href = "{% url 'upload_list' %}"
+                        }, 1000);
+
+                }
+            })
+        }
+    </script>
+{% endblock %}
+
+{% block content %}
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>文件名</th>
+            <th>链接</th>
+            <th>描述</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for uploadfile in uploadfile_list %}
+            <tr>
+                <td>{{ uploadfile.title }}</td>
+                <td><a href="{{ uploadfile.my_file.url }}">{{ uploadfile.my_file.url }}</a></td>
+                <td>{{ uploadfile.desc|default_if_none:"" }}</td>
+                <td>
+                    <a href="javascript:void(0);" onclick="delete_file({{ uploadfile.id }})"
+                       class="btn btn-xs btn-danger">删除</a>
+                    {% csrf_token %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+
+
+{% endblock %}

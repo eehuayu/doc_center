@@ -27,8 +27,6 @@ class TemplateViewWithCategory(generic.TemplateView):
 
         ctx['category_list'] = models.Category.objects.all()
 
-        print(ctx)
-
         return ctx
 
 
@@ -44,6 +42,15 @@ class UpdateViewWithCategory(generic.UpdateView):
 class DetailViewWithCategory(generic.DetailView):
     def get_context_data(self, **kwargs):
         ctx = super(DetailViewWithCategory, self).get_context_data(**kwargs)
+
+        ctx['category_list'] = models.Category.objects.all()
+
+        return ctx
+
+
+class DeleteViewWithCategory(generic.DeleteView):
+    def get_context_data(self, **kwargs):
+        ctx = super(DeleteViewWithCategory, self).get_context_data(**kwargs)
 
         ctx['category_list'] = models.Category.objects.all()
 

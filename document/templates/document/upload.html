@@ -1,0 +1,24 @@
+{% extends 'document/home.html' %}
+{% load static %}
+
+{% block content %}
+    <form class="form-horizontal" action="{% url 'upload' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-6">
+                <input type="text" class="form-control" placeholder="文件标题" id="id_title" name="title" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-6">
+                <input type="file" class="form-control" placeholder="选择文件" id="id_my_file" name="my_file" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-6">
+                <button type="submit" class="form-control btn btn-primary" id="save">上传</button>
+            </div>
+        </div>
+    </form>
+    {{ form.errors }}
+{% endblock %}

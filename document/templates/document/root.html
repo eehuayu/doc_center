@@ -5,6 +5,7 @@
     <title>document center</title>
     <script src="{% static 'jquery/jquery-1.10.2.min.js' %}"></script>
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'common/js/bootstrap-alert.js' %}"></script>
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
 
     {% block styles %}{% endblock %}
@@ -29,6 +30,8 @@
             <ul class="nav navbar-nav">
 {#                <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>#}
                 <li><a href="{% url 'article_create' %}">写文档</a></li>
+                <li><a href="{% url 'upload' %}">上传流程图</a></li>
+                <li><a href="{% url 'upload_list' %}">查看流程图</a></li>
             </ul>
             <form class="navbar-form navbar-right">
                 <div class="form-group">
@@ -49,59 +52,6 @@
                 </div>
                 <div class="col-md-9">
                     {% block content %}
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
                     {% endblock %}
                 </div>
 
