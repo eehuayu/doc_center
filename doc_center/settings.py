@@ -1,3 +1,4 @@
+# coding: utf-8
 """
 Django settings for doc_center project.
 
@@ -60,6 +61,8 @@ WSGI_APPLICATION = 'doc_center.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
+        # CREATE DATABASE `doc_center` DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+        # admin 乱码使用上面的sql语句创建数据库
         'NAME': 'doc_center',
         'USER': 'root',
         'PASSWORD': 'qiye',
@@ -88,11 +91,11 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # Internationalization
-# https://docs.djangoproject.com/en/1.10/topics/i18n/
+# https://docs.djangoproject.com/en/1.6/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-CN'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
