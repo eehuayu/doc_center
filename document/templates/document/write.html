@@ -35,9 +35,6 @@
         editor.customConfig.zIndex = 1000;
         editor.create();
 
-        if("{{ article.id }}")
-            editor.txt.html('{{ article.content|safe }}')
-
         function do_content() {
             $('#id_content').val(editor.txt.html());
             return true;
@@ -47,7 +44,8 @@
 
 {% block content %}
     <form class="form-horizontal" role="form" method="post" onsubmit="return do_content();"
-          action="{% if article.id %} {% url 'article_update' article.id %}{% else %} {% url 'article_create' %}{% endif %}">
+          action="{% if article.id %}
+              {% url 'article_update' article.id %}{% else %} {% url 'article_create' %}{% endif %}">
         {% csrf_token %}
         <div class="form-group">
             <div class="col-md-10">
@@ -62,13 +60,14 @@
             <div class="col-md-10">
                 <select name="category" id="id_category" name="category" class="form-control" required>
                     {% for category in category_list %}
-                        <option value="{{ category.id }}" {% if article.category.id == category.id %}selected {% endif %} >{{ category.name }}</option>
+                        <option value="{{ category.id }}"
+                                {% if article.category.id == category.id %}selected {% endif %}>{{ category.name }}</option>
                     {% endfor %}
                 </select>
             </div>
         </div>
         <div class="content_div">
-            <p>请开始你的表演...</p>
+            {{ article.content|safe }}
         </div>
         <input type="hidden" value="" id="id_content" name="content">
     </form>

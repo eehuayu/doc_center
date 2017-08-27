@@ -1,5 +1,6 @@
+# coding: utf-8
+from django.core.urlresolvers import reverse, reverse_lazy
 from django.http import HttpResponse
-from django.urls import reverse_lazy, reverse
 
 from document import models, mixins
 
