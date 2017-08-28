@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 'u%b#8i4h#5pxo5e2nwgfu0pd-5vjdz8q6h1)@^w#3xju8!*d9-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 TEMPLATE_DEBUG = True
 
@@ -65,7 +65,7 @@ DATABASES = {
         # admin 乱码使用上面的sql语句创建数据库
         'NAME': 'doc_center',
         'USER': 'root',
-        'PASSWORD': 'qiye',
+        'PASSWORD': '',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }
