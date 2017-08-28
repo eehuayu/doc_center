@@ -4,3 +4,4 @@
 /document/migrations/__pycache__
 /media
 *.pyc
+/static/
